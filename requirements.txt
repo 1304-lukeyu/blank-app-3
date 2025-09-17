@@ -1,5 +1,10 @@
-streamlit
-pandas
-matplotlib
-plotly
+# requirements.txt
+streamlit>=1.24.0
+pandas>=2.0
+numpy>=1.24
+matplotlib>=3.6
+plotly>=5.0
+requests>=2.28
+python-dateutil
 pillow
+scipy
