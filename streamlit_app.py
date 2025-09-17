@@ -29,7 +29,7 @@ with tab1:
     # 데이터 출처: NOAA Global Mean Sea Level (예시 CSV 링크)
     # URL: https://www.star.nesdis.noaa.gov/sod/lsa/SeaLevelRise/LSA_SLR_timeseries_global.php
     try:
-        url = "https://datahub.io/core/sea-level-rise/r/gmsl.csv"
+        df = pd.read_csv("gmsl.csv")
         df = pd.read_csv(url)
         df = df.rename(columns={"Time": "date", "GMSL": "value"})
         df["date"] = pd.to_datetime(df["date"], errors="coerce")
@@ -90,7 +90,7 @@ with tab3:
 
     # 업로드된 PNG 불러오기
     try:
-        image = Image.open("25d9c14d-383a-4ba7-a1eb-3c75c7977990.png")
+        image = Image.open("images/sealevel.png")
         st.image(image, caption="연평균 해수면 높이 (1989~2022, 21개소)", use_column_width=True)
         st.info("그래프는 마우스로 드래그하여 조정할 수 있습니다 (Streamlit 기본 뷰어).")
     except Exception as e:
