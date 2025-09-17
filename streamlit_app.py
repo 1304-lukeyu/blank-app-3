@@ -126,7 +126,7 @@ def fetch_public_sea_level_data():
     trend_mm_per_year = 3.3
     trend_cm = trend_mm_per_year / 10.0  # mm -> cm
     values = (years - years[0]) * trend_cm + np.random.normal(0, 0.15, size=len(years)).cumsum()
-    df_example = pd.DataFrame({"date": pd.to_datetime(years.astype(str) + "-01-01"), "value_cm": values, "group": "Global (예시)"})
+    df_example = pd.DataFrame({"date": pd.to_datetime(years.astype(str) + "-01-01"), "value_cm": values, "group": "Global"})
     return df_example
 
 @retry_request(retries=2, delay=1.0)
@@ -277,11 +277,10 @@ st.markdown(
 )
 
 # 이미지 표시 (개발자가 제공한 경로)
-try:
-    img = Image.open("/mnt/data/9caf0f9d-2090-4f35-b1ef-89a96bb8be48.png")
-    st.image(img, caption="입력: 제공된 해수면 상승 그래프 이미지", use_column_width=True)
-except Exception:
-    st.info("제공된 이미지 파일을 찾을 수 없습니다. (경로: /mnt/data/9caf0f9d-2090-4f35-b1ef-89a96bb8be48.png)")
+uploaded_file = st.file_uploader("해수면 그래프 이미지를 업로드하세요", type=["png", "jpg"])
+if uploaded_file:
+    img = Image.open(uploaded_file)
+    st.image(img, caption="업로드한 해수면 상승 그래프", use_column_width=True)
 
 # 프롬프트 기반 합성 시계열 생성
 korea_df_raw = make_korea_coastal_series(start_year=1989, end_year=2022, mm_per_year=3.03)
