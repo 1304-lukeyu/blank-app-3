@@ -188,19 +188,11 @@ def preprocess_timeseries(df, date_col="date", value_col=None):
 st.set_page_config(page_title="해수면 상승 & 청소년 주거 안정 대시보드", layout="wide")
 
 st.title("해수면 상승 및 청소년 주거 불안 대시보드")
-st.caption("공개 데이터 + 프롬프트 기반 대한민국 연안 데이터(1989-2022)를 함께 제공합니다. 모든 UI는 한국어입니다.")
 
 # 상단 요약 카드
 with st.container():
     col1, col2, col3 = st.columns([1, 2, 1])
-    with col1:
-        st.metric("데이터: 공개(글로벌) + 사용자(한국 연안 합성)", "공개(시도) / 프롬프트 기반 합성")
-    with col2:
-        st.markdown(
-            """
-            **목표**: (1) 공식 공개 데이터 기반 분석, (2) 사용자가 제공한 프롬프트(문장 & 이미지) 기반 대한민국 연안 시계열 시각화 및 정책 제언 패널 제공
-            """
-        )
+   
     with col3:
         st.markdown(f"데시보드 생성일: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
